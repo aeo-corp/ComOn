@@ -3,16 +3,16 @@
 		<div class="header-components-container">
 			<img src="assets/imgs/logoOrange.png" class="logo"/>
 			<ul class="padding-list">
-				<li>
-					<a href="/accueil" [ngClass]="validRouter('accueil') ? 'active-link' : ''"><ion-icon name="home"></ion-icon></a>
+				<li [ngClass]="validRouter('accueil') ? 'active-link' : ''">
+					<a routerLink="/accueil" routerDirection="root"><ion-icon name="home"></ion-icon></a>
 				</li>
-				<li *ngFor="let category of categories">
-					<a href="/{{category.router}}" [ngClass]="validRouter(category.router) ? 'active-link' : ''">{{category.title}}</a>
+				<li *ngFor="let category of categories" [ngClass]="validRouter(category.router) ? 'active-link' : ''">
+					<a routerLink="/{{category.router}}" routerDirection="root">{{category.title}}</a>
 				</li>
 			</ul>
 			<ul>
 				<li class="social-link">
-					<ion-icon name="logo-facebook"></ion-icon>
+					<a href="https://www.facebook.com/btscom19/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
 				</li>
 			</ul>
 		</div>
@@ -34,21 +34,25 @@
 
 <ion-content>
 	<div class="menu-container" id="menu" *ngIf="screen_width < 1000">
-
 		<ion-list class="no-padding">
-			<ion-item class="menu-list" [ngClass]="validRouter('accueil') ? 'active-link' : ''">
-				<a href="/accueil">
+			<ion-item class="menu-list" [ngClass]="validRouter('accueil') ? 'active-link' : ''" id="ion-item-list">
+				<a routerLink="/accueil" routerDirection="root">
 					<ion-thumbnail class="thumbnail">
 						<ion-icon class="home-icon" name="home"></ion-icon>
 					</ion-thumbnail>
 					Accueil
 				</a>
 			</ion-item>
-			<ion-item *ngFor="let category of categories" class="menu-list" [ngClass]="validRouter(category.router) ? 'active-link' : ''">
-				<a href="/{{category.router}}">{{category.title}}</a>
+			<ion-item *ngFor="let category of categories" class="menu-list" [ngClass]="validRouter(category.router) ? 'active-link' : ''" id="ion-item-list">
+				<a routerLink="/{{category.router}}" routerDirection="root">{{category.title}}</a>
 			</ion-item>
-
 		</ion-list>
+	</div>
 
+	<div class="center-contents">
+		<img src="assets/imgs/{{img_src}}.png" />
+	</div>
+	<div class="center-contents">
+		<p *ngIf="router">Page {{current_page}}</p>
 	</div>
 </ion-content>

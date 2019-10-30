@@ -37,7 +37,7 @@ li:after {
   width: 0px;
   height: 2px;
   display: block;
-  background: #f38f33;
+  background: #f28d48;
   transition: 0.3s;
 }
 
@@ -52,7 +52,7 @@ a {
 }
 
 .active-link {
-	border-bottom: 2px solid #f38f33;
+	border-bottom: 2px solid #f28d48;
 }
 
 .social-link {
@@ -68,7 +68,7 @@ a {
 	height: 100vh;
 	width: 100vw;
 	overflow-x: scroll;
-	background-color: #222428;
+	background-color: #1c1c1b;
 }
 
 #menu {
@@ -82,9 +82,22 @@ a {
 }
 
 .menu-list {
-	background-color: #222428;
-	--background: #222428;
+	background-color: #1c1c1b;
+	--background: #1c1c1b;
 	color: white;
+}
+
+#ion-item-list:after {
+  content: '';
+  width: 0px;
+  height: 2px;
+  display: block;
+  background: #f28d48;
+  transition: 0.3s;
+}
+
+#ion-item-list:hover:after {
+  width: 100%;
 }
 
 .no-padding {
@@ -97,4 +110,9 @@ a {
 
 .home-icon {
 	padding-right: 20px;
+}
+
+.center-contents {
+	display: flex;
+	justify-content: center;
 }
