@@ -1,14 +1,54 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+<ion-header *ngIf="screen_width >= 1000">
+  <ion-toolbar color="dark">
+		<div class="header-components-container">
+			<img src="assets/imgs/logoOrange.png" class="logo"/>
+			<ul class="padding-list">
+				<li>
+					<a href="/accueil" [ngClass]="validRouter('accueil') ? 'active-link' : ''"><ion-icon name="home"></ion-icon></a>
+				</li>
+				<li *ngFor="let category of categories">
+					<a href="/{{category.router}}" [ngClass]="validRouter(category.router) ? 'active-link' : ''">{{category.title}}</a>
+				</li>
+			</ul>
+			<ul>
+				<li class="social-link">
+					<ion-icon name="logo-facebook"></ion-icon>
+				</li>
+			</ul>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header *ngIf="screen_width < 1000">
+  <ion-toolbar color="dark">
+		<div class="header-components-container">
+			<img src="assets/imgs/logoOrange.png" class="logo"/>
+		</div>
+		<ion-buttons slot="end">
+			<ion-button icon-only (click)="toggleMenu()">
+				<ion-icon class="menu-icon-controler" name="menu"></ion-icon>
+			</ion-button>
+		</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+	<div class="menu-container" id="menu" *ngIf="screen_width < 1000">
+
+		<ion-list class="no-padding">
+			<ion-item class="menu-list" [ngClass]="validRouter('accueil') ? 'active-link' : ''">
+				<a href="/accueil">
+					<ion-thumbnail class="thumbnail">
+						<ion-icon class="home-icon" name="home"></ion-icon>
+					</ion-thumbnail>
+					Accueil
+				</a>
+			</ion-item>
+			<ion-item *ngFor="let category of categories" class="menu-list" [ngClass]="validRouter(category.router) ? 'active-link' : ''">
+				<a href="/{{category.router}}">{{category.title}}</a>
+			</ion-item>
+
+		</ion-list>
+
+	</div>
 </ion-content>
