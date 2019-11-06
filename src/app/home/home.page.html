@@ -1,58 +1,72 @@
-<ion-header *ngIf="screen_width >= 1000">
-  <ion-toolbar color="dark">
-		<div class="header-components-container">
-			<img src="assets/imgs/logoOrange.png" class="logo"/>
-			<ul class="padding-list">
-				<li [ngClass]="validRouter('accueil') ? 'active-link' : ''">
-					<a routerLink="/accueil" routerDirection="root"><ion-icon name="home"></ion-icon></a>
-				</li>
-				<li *ngFor="let category of categories" [ngClass]="validRouter(category.router) ? 'active-link' : ''">
-					<a routerLink="/{{category.router}}" routerDirection="root">{{category.title}}</a>
-				</li>
-			</ul>
-			<ul>
-				<li class="social-link">
-					<a href="https://www.facebook.com/btscom19/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
-				</li>
-			</ul>
-		</div>
-  </ion-toolbar>
-</ion-header>
-
 <ion-header *ngIf="screen_width < 1000">
   <ion-toolbar color="dark">
+		<ion-buttons slot="start">
+			<ion-button icon-only (click)="toggleMenu()">
+				<ion-icon class="menu-icon-controller rotate-icon-open" [name]="menu ? 'close' : 'menu'" id="menu-icon"></ion-icon>
+			</ion-button>
+		</ion-buttons>
 		<div class="header-components-container">
 			<img src="assets/imgs/logoOrange.png" class="logo"/>
 		</div>
-		<ion-buttons slot="end">
-			<ion-button icon-only (click)="toggleMenu()">
-				<ion-icon class="menu-icon-controler" name="menu"></ion-icon>
-			</ion-button>
-		</ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 	<div class="menu-container" id="menu" *ngIf="screen_width < 1000">
 		<ion-list class="no-padding">
-			<ion-item class="menu-list" [ngClass]="validRouter('accueil') ? 'active-link' : ''" id="ion-item-list">
-				<a routerLink="/accueil" routerDirection="root">
+			<a routerLink="/accueil" routerDirection="root">
+				<ion-item class="menu-list" [ngClass]="validRouter('accueil') ? 'active-link' : ''" id="ion-item-list">
 					<ion-thumbnail class="thumbnail">
 						<ion-icon class="home-icon" name="home"></ion-icon>
 					</ion-thumbnail>
 					Accueil
+				</ion-item>
+			</a>
+			<div *ngFor="let category of categories">
+				<a routerLink="/{{category.router}}" routerDirection="root">
+					<ion-item class="menu-list" [ngClass]="validRouter(category.router) ? 'active-link' : ''" id="ion-item-list">
+						{{category.title}}
+					</ion-item>
 				</a>
-			</ion-item>
-			<ion-item *ngFor="let category of categories" class="menu-list" [ngClass]="validRouter(category.router) ? 'active-link' : ''" id="ion-item-list">
-				<a routerLink="/{{category.router}}" routerDirection="root">{{category.title}}</a>
-			</ion-item>
+			</div>
 		</ion-list>
+		<div class="center-contents menu-footer">
+			<a href="https://www.facebook.com/btscom19/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+		</div>
 	</div>
 
-	<div class="center-contents">
-		<img src="assets/imgs/{{img_src}}.png" />
+	<div class="side-menu" *ngIf="screen_width >= 1000">
+		<div class="center-contents">
+			<img src="assets/imgs/logoOrange.png" class="logo-side-menu"/>
+		</div>
+		<ion-list class="no-padding">
+			<a routerLink="/accueil" routerDirection="root">
+				<ion-item class="menu-list" [ngClass]="validRouter('accueil') ? 'active-link' : ''" id="ion-item-list">
+					<ion-thumbnail class="thumbnail">
+						<ion-icon class="home-icon" name="home"></ion-icon>
+					</ion-thumbnail>
+					Accueil
+				</ion-item>
+			</a>
+			<div *ngFor="let category of categories">
+				<a routerLink="/{{category.router}}" routerDirection="root">
+					<ion-item class="menu-list" [ngClass]="validRouter(category.router) ? 'active-link' : ''" id="ion-item-list">
+						{{category.title}}
+					</ion-item>
+				</a>
+			</div>
+		</ion-list>
+		<div class="center-contents menu-footer">
+			<a href="https://www.facebook.com/btscom19/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+		</div>
 	</div>
-	<div class="center-contents">
-		<p *ngIf="router">Page {{current_page}}</p>
+
+	<div id="page-content">
+		<div class="center-contents">
+			<img src="assets/imgs/{{img_src}}.png" />
+		</div>
+		<div class="center-contents">
+			<p *ngIf="router">{{current_page}}</p>
+		</div>
 	</div>
 </ion-content>
