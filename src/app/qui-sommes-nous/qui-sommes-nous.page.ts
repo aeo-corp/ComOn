@@ -1,31 +1,29 @@
 import { Component } from '@angular/core';
-import { DatePipe } from '@angular/common';
+
 import { Platform } from '@ionic/angular';
 
 import { Category } from '../models/category.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-	providers: [DatePipe]
+  selector: 'app-qui-sommes-nous',
+  templateUrl: './qui-sommes-nous.page.html',
+  styleUrls: ['./qui-sommes-nous.page.scss'],
 })
-export class HomePage {
+export class QuiSommesNousPage {
 
 	categories: Array<Category>;
-	current_page: string = "Accueil";
+
+	current_page: string = "Qui sommes nous ?";
 	router: string;
 	screen_width: number;
 	menu: boolean = false;
-	img_src: string;
+	page: any = "blog";
 
-  constructor(	private platform: Platform,
-								private datePipe: DatePipe) {}
+  constructor(	private platform: Platform) {}
 
 	ionViewWillEnter() {
 		this.screen_width = Number(localStorage.getItem('screen_width'));
 		this.setScreenSize();
-		this.setDate();
 		this.categories = [
 			{ id: 1, title: "Qui sommes nous ?", router: "qui_sommes_nous", number: 1 },
 			{ id: 2, title: "Parlons peu, parlons com", router: "parlons_peu_parlons_com", number: 2 },
@@ -35,9 +33,17 @@ export class HomePage {
 			{ id: 6, title: "Un pour tous, tous pour com", router: "un_pour_tous_tous_pour_com", number: 6 },
 			{ id: 7, title: "Le saviez-vous ?", router: "le_saviez_vous", number: 7 },
 		];
-		this.router = decodeURI(document.URL.split('/')[document.URL.split('/').length - 1]);
-		if (this.categories.find(x => x.router === this.router))
-			this.current_page = this.categories.find(x => x.router === this.router).title;
+		this.getRouter();
+	}
+
+	getRouter() {
+		setTimeout(() => {
+			this.router = decodeURI(document.URL.split('/')[document.URL.split('/').length - 1]);
+			if (this.router.split("=")[1])
+				this.page = this.router.split("=")[1]
+			if (this.categories.find(x => x.router === this.router.split("?")[0]))
+				this.current_page = this.categories.find(x => x.router === this.router.split("?")[0]).title;
+		}, 300)
 	}
 
 	setScreenSize() {
@@ -48,25 +54,14 @@ export class HomePage {
 		}, 300)
 	}
 
-	setDate() {
-		let date = this.datePipe.transform(new Date(), 'MM-dd')
-		if (date >= "09-22" && date <= "12-21") { //between 22 Sept. include and 21 Dec. include.
-			this.img_src = "autumn";
-		} else if (date >= "12-22" || date <= "03-19") { //between 22 Dec. include and 19 March include
-			if (date >= "12-24" && date <= "12-26") { //between 24 Dec. include and 26 Dec. include
-				this.img_src = "winter2";
-			} else {
-				this.img_src = "winter";
-			}
-		} else if (date >= "03-20" && date <= "06-19") { //between 20 March include and 19 june include.
-			this.img_src = "spring"
-		} else if (date >= "06-20" && date <= "09-21") { //between 20 June include and 20 Sept. include
-			this.img_src = "summer"
-		}
+	validRouter(el) {
+		if (this.router && this.router.split("?")[0] === el)
+			return true;
+		return false;
 	}
 
-	validRouter(el) {
-		if (this.router === el)
+	onPage(el) {
+		if (this.page === el)
 			return true;
 		return false;
 	}

@@ -62,11 +62,55 @@
 	</div>
 
 	<div id="page-content">
+
 		<div class="center-contents">
-			<img src="assets/imgs/{{img_src}}.png" />
+			<h2 class="page-title angelinatta">Qui sommes-nous ?</h2>
 		</div>
-		<div class="center-contents">
-			<p *ngIf="router">{{current_page}}</p>
+
+		<ion-row>
+			<ion-col size="1"></ion-col>
+			<ion-col size="4" class="center-contents" [ngClass]="onPage('blog') ? 'selected-page' : ''">
+				<a routerLink="/qui_sommes_nous" [queryParams]="{c: 'blog'}" class="page angelinatta" (click)="getRouter()">
+					"Blog"
+				</a>
+			</ion-col>
+			<ion-col size="2"></ion-col>
+			<ion-col size="4" class="center-contents" [ngClass]="onPage('bts_com') ? 'selected-page' : ''">
+				<a routerLink="/qui_sommes_nous" [queryParams]="{c: 'bts_com'}" class="page angelinatta" (click)="getRouter()">
+					"BTS Com"
+				</a>
+			</ion-col>
+			<ion-col size="1"></ion-col>
+		</ion-row>
+
+		<div class="center-contents content">
+			<div class="content-text">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+					ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+					qui officia deserunt mollit anim id est laborum.
+				</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+					ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+					qui officia deserunt mollit anim id est laborum.
+				</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+					ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+					qui officia deserunt mollit anim id est laborum.
+				</p>
+			</div>
 		</div>
+
 	</div>
 </ion-content>

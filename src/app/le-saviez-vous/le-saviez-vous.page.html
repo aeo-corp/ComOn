@@ -33,6 +33,19 @@
 		<div class="center-contents menu-footer">
 			<a href="https://www.facebook.com/btscom19/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
 		</div>
+		<div class="center-contents mention">
+			<ion-row>
+				<ion-col size="4" class="center">
+					<a href="ok" target="_blank"><label>Mentions légales</label></a>
+				</ion-col>
+				<ion-col size="4" class="center">
+					<a href="ok" target="_blank"><label>Conditions générales d'utilisations du site</label></a>
+				</ion-col>
+				<ion-col size="4" class="center">
+					<a href="ok" target="_blank"><label>Contacts</label></a>
+				</ion-col>
+			</ion-row>
+		</div>
 	</div>
 
 	<div class="side-menu" *ngIf="screen_width >= 992">
@@ -59,14 +72,41 @@
 		<div class="center-contents menu-footer">
 			<a href="https://www.facebook.com/btscom19/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
 		</div>
+		<div class="center-contents mention">
+			<ion-row>
+				<ion-col size="4" class="center">
+					<a href="ok" target="_blank"><label>Mentions légales</label></a>
+				</ion-col>
+				<ion-col size="4" class="center">
+					<a href="ok" target="_blank"><label>Conditions générales d'utilisations du site</label></a>
+				</ion-col>
+				<ion-col size="4" class="center">
+					<a href="ok" target="_blank"><label>Contacts</label></a>
+				</ion-col>
+			</ion-row>
+		</div>
 	</div>
 
 	<div id="page-content">
+
 		<div class="center-contents">
-			<img src="assets/imgs/{{img_src}}.png" />
+			<h2 class="page-title angelinatta">A vous de jouer</h2>
 		</div>
-		<div class="center-contents">
-			<p *ngIf="router">{{current_page}}</p>
+
+		<div>
+			<ion-row>
+				<ion-col size="12" size-sm="6" size-md="6" size-lg="3" *ngFor="let question of questions">
+					<ion-card>
+						<ion-card-title class="center-contents">
+							<img src="assets/imgs/question-mark.png" class="card-img"/>
+						</ion-card-title>
+						<ion-card-content>
+							{{question.title}}
+						</ion-card-content>
+					</ion-card>
+				</ion-col>
+			</ion-row>
 		</div>
+
 	</div>
 </ion-content>

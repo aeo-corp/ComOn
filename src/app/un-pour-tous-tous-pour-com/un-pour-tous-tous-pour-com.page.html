@@ -62,11 +62,25 @@
 	</div>
 
 	<div id="page-content">
+
 		<div class="center-contents">
-			<img src="assets/imgs/{{img_src}}.png" />
+			<h2 class="page-title angelinatta">Un pour tous tous pour Com</h2>
 		</div>
-		<div class="center-contents">
-			<p *ngIf="router">{{current_page}}</p>
+
+		<div>
+			<ion-row>
+				<ion-col size="12" size-sm="6" size-md="6" size-lg="3" *ngFor="let folder of folders">
+					<ion-card>
+						<ion-card-title class="center-contents">
+							<img src="assets/imgs/folder.png" class="card-img"/>
+						</ion-card-title>
+						<ion-card-content>
+							{{folder.title}}
+						</ion-card-content>
+					</ion-card>
+				</ion-col>
+			</ion-row>
 		</div>
+
 	</div>
 </ion-content>

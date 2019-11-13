@@ -62,11 +62,41 @@
 	</div>
 
 	<div id="page-content">
+
 		<div class="center-contents">
-			<img src="assets/imgs/{{img_src}}.png" />
+			<h2 class="page-title angelinatta">Parlons peu parlons Com</h2>
 		</div>
-		<div class="center-contents">
-			<p *ngIf="router">{{current_page}}</p>
+
+		<ion-row>
+			<ion-col size="1"></ion-col>
+			<ion-col size="4" class="center-contents" [ngClass]="onPage('etudiants') ? 'selected-page' : ''">
+				<a routerLink="/parlons_peu_parlons_com" [queryParams]="{c: 'etudiants'}" class="page angelinatta" (click)="getRouter()">
+					"Etudiants"
+				</a>
+			</ion-col>
+			<ion-col size="2"></ion-col>
+			<ion-col size="4" class="center-contents" [ngClass]="onPage('professionels') ? 'selected-page' : ''">
+				<a routerLink="/parlons_peu_parlons_com" [queryParams]="{c: 'professionels'}" class="page angelinatta" (click)="getRouter()">
+					"Professionels"
+				</a>
+			</ion-col>
+			<ion-col size="1"></ion-col>
+		</ion-row>
+
+		<div>
+			<ion-row>
+				<ion-col size="12" size-sm="6" size-md="6" size-lg="4" *ngFor="let article of displayArticles()">
+					<ion-card>
+						<ion-card-title class="center-contents">
+							<img src="assets/imgs/microphone.png" class="card-img"/>
+						</ion-card-title>
+						<ion-card-content>
+							{{article.title}}
+						</ion-card-content>
+					</ion-card>
+				</ion-col>
+			</ion-row>
 		</div>
+
 	</div>
 </ion-content>
