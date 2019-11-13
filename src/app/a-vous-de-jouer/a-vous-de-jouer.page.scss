@@ -115,6 +115,16 @@ a {
 	color: white;
 }
 
+.mention {
+	position: absolute;
+	width: 100%;
+	max-width: 400px;
+	bottom: 5px;
+	font-size: 10px;
+	color: white;
+	text-decoration: underline;
+}
+
 .side-menu {
 	width: 400px;
 	height: 100%;
